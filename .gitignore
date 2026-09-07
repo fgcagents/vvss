@@ -1,4 +1,15 @@
+# Base de dades SQLite
+vvss.db
+vvss.db-shm
+vvss.db-wal
+
+# Fitxers generats
 quadrant.csv
+quadrant_actual.csv
+quadrant.json
+quadrant_actual.json
+
+# Python
 __pycache__/
 *.pyc
 *.pyo
@@ -7,3 +18,13 @@ __pycache__/
 env/
 venv/
 .venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
