@@ -32,7 +32,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from model import ParametresLegals, Servei, Vigilant, compatible_temporalment
+from model import ParametresLegals, Servei, Vigilant
 
 
 @dataclass
@@ -40,6 +40,31 @@ class CandidatUrgencia:
     vigilant_id: str
     hores_acumulades: float
     motiu_descart: str | None = None  # None == candidat valid
+
+
+def _compatible_temporalment(
+    servei1: Servei,
+    servei2: Servei,
+    params: ParametresLegals,
+) -> bool:
+    """Comprova si dos serveis son compatibles temporalment per a un mateix vigilant.
+    
+    Retorna True si es poden assignar ambdos al mateix vigilant sense violar:
+    1. Solapament temporal (els serveis no es solapen).
+    2. Descans minim entre serveis (segons params).
+    """
+    # Ordenar per inici
+    a, b = (servei1, servei2) if servei1.inici <= servei2.inici else (servei2, servei1)
+    
+    # 1. Comprovar solapament
+    if a.fi > b.inici:
+        return False
+    
+    # 2. Comprovar descans minim
+    gap_hores = (b.inici - a.fi).total_seconds() / 3600.0
+    requerit = params.descans_torn_llarg_hores if a.durada_hores >= params.llindar_torn_llarg_hores else params.descans_minim_hores
+    
+    return gap_hores >= requerit
 
 
 def troba_substitut(
@@ -63,7 +88,7 @@ def troba_substitut(
 
         conflicte_amb = next(
             (s for s in serveis_ja_assignats.get(v.id, [])
-             if not compatible_temporalment(s, servei_urgent, params)),
+             if not _compatible_temporalment(s, servei_urgent, params)),
             None,
         )
         if conflicte_amb:
