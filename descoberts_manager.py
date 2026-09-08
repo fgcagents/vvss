@@ -510,8 +510,9 @@ def processar_resultat_i_descoberts(
     serveis_dict = {s.id: s for s in serveis}
     resolts_auto = 0
     for d in descoberts:
-        # Obtenir la prioritat del motiu
-        motiu = obtenir_motiu_descobert(d["motiu_cod"])
+        # Obtenir la prioritat del motiu (d té el camp "cod" del motiu)
+        motiu_cod = d.get("motiu_cod", d.get("cod", "desconegut"))
+        motiu = obtenir_motiu_descobert(motiu_cod)
         prioritat = motiu["prioritat"] if motiu else 4
         
         if prioritat <= 1:  # Només els crítics
