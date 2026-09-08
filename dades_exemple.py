@@ -19,82 +19,143 @@ from schemas import Vigilant, Servei
 
 
 def genera_vigilants() -> list[Vigilant]:
-    # Serveis sense armes de foc: només categories "no_armat" (control d'accessos,
-    # rondes, atenció a usuaris) i "cctv" (sala de control/videovigilància).
-    # Afegim més vigilants amb CCTV per cobrir els torns de nit amb binomi.
-    # També afegim baixes i preferències de binomi per a proves.
+    """Genera 15 vigilants per cobrir la xarxa amb compliment legal (48h setmanals).
+    
+    Distribució:
+    - 7 vigilants amb CCTV (per a serveis de nit amb binomi obligatori).
+    - 8 vigilants sense CCTV (per a serveis de dia).
+    - Tots amb hores_max_setmana=48 (límit legal).
+    - Inclou baixes i preferències per a proves realistes.
+    """
     return [
-        # Vigilants amb CCTV per a torns de nit
+        # Vigilants amb CCTV per a torns de nit (7 vigilants)
         Vigilant(
-            "V01", {"no_armat", "cctv"}, 
-            hores_objectiu_periode=80, 
-            hores_acumulades=310, 
-            zona_preferida="Central", 
+            "V01", {"no_armat", "cctv"},
+            hores_objectiu_periode=80,
+            hores_acumulades=0,
+            hores_max_setmana=48,  # ✅ LÍMIT LEGAL: 48h setmanals
+            zona_preferida="Central",
             torn_preferit="nit",
             torns_no_desitjats={"mati"},
-            binomi_preferit="V02",  # Prefereix treballar amb V02
+            binomi_preferit="V02",
         ),
         Vigilant(
-            "V02", {"no_armat", "cctv"}, 
-            hores_objectiu_periode=80, 
-            hores_acumulades=295, 
-            zona_preferida="Central", 
+            "V02", {"no_armat", "cctv"},
+            hores_objectiu_periode=80,
+            hores_acumulades=0,
+            hores_max_setmana=48,
+            zona_preferida="Central",
             torn_preferit="nit",
-            binomi_preferit="V01",  # Prefereix treballar amb V01
+            binomi_preferit="V01",
         ),
         Vigilant(
-            "V03", {"no_armat", "cctv"}, 
-            hores_objectiu_periode=80, 
-            hores_acumulades=340, 
-            zona_preferida="Nord", 
+            "V03", {"no_armat", "cctv"},
+            hores_objectiu_periode=80,
+            hores_acumulades=0,
+            hores_max_setmana=48,
+            zona_preferida="Nord",
             torn_preferit="nit",
             torns_no_desitjats={"mati"},
         ),
         Vigilant(
-            "V04", {"no_armat", "cctv"}, 
-            hores_objectiu_periode=80, 
-            hores_acumulades=260, 
-            zona_preferida="Nord", 
+            "V04", {"no_armat", "cctv"},
+            hores_objectiu_periode=80,
+            hores_acumulades=0,
+            hores_max_setmana=48,
+            zona_preferida="Nord",
             torn_preferit="nit",
             binomi_preferit="V03",
         ),
-        # Vigilants sense CCTV per a torns de dia
         Vigilant(
-            "V05", {"no_armat"}, 
-            hores_objectiu_periode=80, 
-            hores_acumulades=280, 
-            zona_preferida="Central", 
+            "V05", {"no_armat", "cctv"},
+            hores_objectiu_periode=80,
+            hores_acumulades=0,
+            hores_max_setmana=48,
+            zona_preferida="Sud",
+            torn_preferit="nit",
+        ),
+        Vigilant(
+            "V06", {"no_armat", "cctv"},
+            hores_objectiu_periode=80,
+            hores_acumulades=0,
+            hores_max_setmana=48,
+            zona_preferida="Central",
+            torn_preferit="nit",
+        ),
+        Vigilant(
+            "V07", {"no_armat", "cctv"},
+            hores_objectiu_periode=80,
+            hores_acumulades=0,
+            hores_max_setmana=48,
+            zona_preferida="Sud",
+            torn_preferit="nit",
+        ),
+        # Vigilants sense CCTV per a torns de dia (8 vigilants)
+        Vigilant(
+            "V08", {"no_armat"},
+            hores_objectiu_periode=80,
+            hores_acumulades=0,
+            hores_max_setmana=48,
+            zona_preferida="Central",
             torn_preferit="mati",
             torns_no_desitjats={"nit"},
         ),
         Vigilant(
-            "V06", {"no_armat"}, 
-            hores_objectiu_periode=80, 
-            hores_acumulades=300, 
-            zona_preferida="Central", 
+            "V09", {"no_armat"},
+            hores_objectiu_periode=80,
+            hores_acumulades=0,
+            hores_max_setmana=48,
+            zona_preferida="Central",
             torn_preferit="tarda",
             torns_no_desitjats={"nit"},
         ),
         Vigilant(
-            "V07", {"no_armat"}, 
-            hores_objectiu_periode=80, 
-            hores_acumulades=275, 
-            zona_preferida="Sud", 
+            "V10", {"no_armat"},
+            hores_objectiu_periode=80,
+            hores_acumulades=0,
+            hores_max_setmana=48,
+            zona_preferida="Nord",
             torn_preferit="mati",
         ),
         Vigilant(
-            "V08", {"no_armat"}, 
-            hores_objectiu_periode=80, 
-            hores_acumulades=290, 
-            zona_preferida="Sud", 
+            "V11", {"no_armat"},
+            hores_objectiu_periode=80,
+            hores_acumulades=0,
+            hores_max_setmana=48,
+            zona_preferida="Nord",
             torn_preferit="tarda",
         ),
-        # Vigilants amb baixa per a proves
         Vigilant(
-            "V09", {"no_armat", "cctv"}, 
-            hores_objectiu_periode=80, 
-            hores_acumulades=320, 
-            zona_preferida="Nord", 
+            "V12", {"no_armat"},
+            hores_objectiu_periode=80,
+            hores_acumulades=0,
+            hores_max_setmana=48,
+            zona_preferida="Sud",
+            torn_preferit="mati",
+        ),
+        Vigilant(
+            "V13", {"no_armat"},
+            hores_objectiu_periode=80,
+            hores_acumulades=0,
+            hores_max_setmana=48,
+            zona_preferida="Sud",
+            torn_preferit="tarda",
+        ),
+        Vigilant(
+            "V14", {"no_armat"},
+            hores_objectiu_periode=80,
+            hores_acumulades=0,
+            hores_max_setmana=48,
+            zona_preferida="Central",
+            torn_preferit="mati",
+        ),
+        # Vigilant amb baixa per a proves
+        Vigilant(
+            "V15", {"no_armat", "cctv"},
+            hores_objectiu_periode=80,
+            hores_acumulades=0,
+            hores_max_setmana=48,
+            zona_preferida="Nord",
             torn_preferit="nit",
             # Baixa del dia 2 al dia 4
             baixes=[(
@@ -102,13 +163,6 @@ def genera_vigilants() -> list[Vigilant]:
                 datetime(2026, 9, 10, 23, 59)
             )],
         ),
-        Vigilant(
-            "V10", {"no_armat"}, 
-            hores_objectiu_periode=40, 
-            hores_acumulades=150, 
-            zona_preferida="Central", 
-            torn_preferit="mati",
-        ),  # part-time
     ]
 
 
@@ -133,9 +187,9 @@ def genera_serveis(dies: int = 7) -> list[Servei]:
 
         # Estació Central: control d'accessos (no armat) mati+tarda, CCTV nit
         for torn, h_ini, h_fi in torns:
-            hab = "cctv" if torn == "nit" else "no_armat"
-            # Els torns de nit a Central requereixen binomi obligatori
+            # ✅ Pla de Seguretat de FGC: TOTS els torns de nit requereixen binomi + CCTV
             binomi = (torn == "nit")
+            hab = "cctv" if binomi else "no_armat"
             serveis.append(Servei(
                 id=f"CEN-{torn}-{d}",
                 zona="Central",
@@ -149,30 +203,32 @@ def genera_serveis(dies: int = 7) -> list[Servei]:
 
         # Estació Nord: rondes no armades, 3 torns
         for torn, h_ini, h_fi in torns:
-            # Els torns de nit a Nord sempre requereixen binomi
+            # ✅ Pla de Seguretat de FGC: TOTS els torns de nit requereixen binomi obligatori
             binomi = (torn == "nit")
             serveis.append(Servei(
                 id=f"NOR-{torn}-{d}",
                 zona="Nord",
                 inici=dia + timedelta(hours=h_ini),
                 fi=dia + timedelta(hours=h_fi),
-                habilitacio_requerida="no_armat",
+                habilitacio_requerida="cctv" if binomi else "no_armat",  # ✅ Binomi requereix CCTV
                 vigilants_requerits=2 if binomi else 1,
                 torn=torn,
                 binomi_obligatori=binomi,
             ))
 
-        # Estació Sud: control d'accessos no armat, només mati+tarda (sense servei de nit)
-        for torn, h_ini, h_fi in torns[:2]:
+        # Estació Sud: control d'accessos, TOTS els torns (inclòs nit amb binomi)
+        for torn, h_ini, h_fi in torns:
+            # ✅ Pla de Seguretat de FGC: TOTS els torns de nit requereixen binomi obligatori
+            binomi = (torn == "nit")
             serveis.append(Servei(
                 id=f"SUD-{torn}-{d}",
                 zona="Sud",
                 inici=dia + timedelta(hours=h_ini),
                 fi=dia + timedelta(hours=h_fi),
-                habilitacio_requerida="no_armat",
-                vigilants_requerits=1,
+                habilitacio_requerida="cctv" if binomi else "no_armat",  # ✅ Binomi requereix CCTV
+                vigilants_requerits=2 if binomi else 1,
                 torn=torn,
-                binomi_obligatori=False,
+                binomi_obligatori=binomi,
             ))
 
     return serveis
