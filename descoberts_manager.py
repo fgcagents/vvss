@@ -293,7 +293,9 @@ def resoldre_descoberts_automaticament(
     
     for d in descoberts_pendents:
         # Només processar els de prioritat <= limit_prioritat
-        if d["prioritat"] > limit_prioritat:
+        motiu = obtenir_motiu_descobert(d["motiu_cod"])
+        prioritat = motiu["prioritat"] if motiu else 4
+        if prioritat > limit_prioritat:
             continue
         
         # Intentar resoldre
@@ -429,17 +431,17 @@ def enviar_notificacio_descobert(descobert: Dict) -> None:
         return
     
     missatge = f"""
-    ⚠️  NOU DESCUBERT {descobert['prioritat']} ⚠️
+    ⚠️  NOU DESCUBERT {motiu['prioritat'] if motiu else 4} ⚠️
     
     Servei: {descobert['servei_id']}
     Data: {descobert['data_inici']}
-    Motiu: {descobert['motiu_descripcio']}
-    Categoria: {descobert['categoria']}
+    Motiu: {motiu['descripcio'] if motiu else 'Desconegut'}
+    Categoria: {motiu['categoria'] if motiu else 'desconegut'}
     
-    Solució proposada: {descobert['solucio']}
-    Detalls: {descobert['detalls']}
+    Solució proposada: {descobert.get('solucio_proposada', 'No especificada')}
+    Detalls: {descobert.get('detalls', 'No especificats')}
     
-    Acció recomanada: {descobert.get('solucio_tipica', 'Revisar manualment')}
+    Acció recomanada: {motiu['solucio_tipica'] if motiu else 'Revisar manualment'}
     """
     print(missatge)
 
