@@ -424,7 +424,8 @@ def enviar_notificacio_descobert(descobert: Dict) -> None:
     Args:
         descobert: Diccionari amb les dades del descobert.
     """
-    if descobert["prioritat"] > 2:
+    motiu = obtenir_motiu_descobert(descobert["motiu_cod"])
+    if motiu and motiu["prioritat"] > 2:
         return
     
     missatge = f"""
@@ -474,8 +475,9 @@ def monitoritzar_descoberts() -> None:
     print(f"  ❌ Fallats: {resultats['fallats']}")
     
     # Enviar notificacions per als que no s'han pogut resoldre
-    for d in obtenir_descoberts(data_inici=data_inici, data_fi=data_fi, resolt=False):
-        enviar_notificacio_descobert(d)
+    for d in obtenir_descoberts():
+        if not d["resolt"]:
+            enviar_notificacio_descobert(d)
 
 
 # ============================================================================
@@ -506,7 +508,11 @@ def processar_resultat_i_descoberts(
     serveis_dict = {s.id: s for s in serveis}
     resolts_auto = 0
     for d in descoberts:
-        if d["prioritat"] <= 1:  # Només els crítics
+        # Obtenir la prioritat del motiu
+        motiu = obtenir_motiu_descobert(d["motiu_cod"])
+        prioritat = motiu["prioritat"] if motiu else 4
+        
+        if prioritat <= 1:  # Només els crítics
             vigilant_substitut, _ = intentar_resoldre_descobert_automaticament(
                 d["servei_id"], vigilants, serveis_dict, params
             )
