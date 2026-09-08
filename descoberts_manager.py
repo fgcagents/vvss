@@ -330,6 +330,78 @@ def resoldre_descoberts_automaticament(
     }
 
 
+
+def obtenir_informe_descoberts_diari(
+    data: date = None
+) -> Dict:
+    """Obt un informe diari de descoberts amb estadstiques detallades.
+    
+    Args:
+        data: Data del dia (default: avui).
+    
+    Returns:
+        Diccionari amb estadstiques i detalls.
+    """
+    if data is None:
+        data = datetime.now().date()
+    
+    # Obtenir tots els descoberts
+    tots_descoberts = obtenir_descoberts()
+    
+    # Filtrar per data (obtenir servei per cada descobert)
+    serveis_dict = {s.id: s for s in obtenir_tots_serveis()}
+    
+    # Filtrar descoberts del dia
+    descoberts = []
+    for d in tots_descoberts:
+        servei = serveis_dict.get(d["servei_id"])
+        if servei and servei.inici.date() == data:
+            descoberts.append(d)
+    
+    # Obtenir tots els serveis del dia
+    serveis = obtenir_tots_serveis()
+    serveis_dia = [s for s in serveis if s.inici.date() == data]
+    
+    # Classificar per motiu
+    per_motiu = defaultdict(lambda: {"count": 0, "descripcio": "", "prioritat": 0, "solucio_tipica": ""})
+    for d in descoberts:
+        motiu = obtenir_motiu_descobert(d["motiu_cod"])
+        if motiu:
+            per_motiu[d["motiu_cod"]]["count"] += 1
+            per_motiu[d["motiu_cod"]]["descripcio"] = motiu["descripcio"]
+            per_motiu[d["motiu_cod"]]["prioritat"] = motiu["prioritat"]
+            per_motiu[d["motiu_cod"]]["solucio_tipica"] = motiu["solucio_tipica"]
+    
+    # Classificar per zona
+    per_zona = defaultdict(int)
+    for d in descoberts:
+        servei = serveis_dict.get(d["servei_id"])
+        if servei:
+            per_zona[servei.zona] += 1
+    
+    return {
+        "data": data.isoformat() if isinstance(data, date) else str(data),
+        "total_serveis": len(serveis_dia),
+        "serveis_coberts": len(serveis_dia) - len(descoberts),
+        "percentatge_cobertura": ((len(serveis_dia) - len(descoberts)) / len(serveis_dia) * 100) if serveis_dia else 0,
+        "descoberts_total": len(descoberts),
+        "descoberts_resolts": sum(1 for d in descoberts if d["resolt"]),
+        "descoberts_pendents": sum(1 for d in descoberts if not d["resolt"]),
+        "per_motiu": dict(per_motiu),
+        "per_zona": dict(per_zona),
+        "descoberts_detall": [
+            {
+                "servei_id": d["servei_id"],
+                "data_inici": d["data_inici"],
+                "motiu_cod": d["motiu_cod"],
+                "motiu_descripcio": obtenir_motiu_descobert(d["motiu_cod"])["descripcio"] if obtenir_motiu_descobert(d["motiu_cod"]) else "",
+                "resolt": d["resolt"]
+            }
+            for d in descoberts
+        ]
+    }
+
+
 def generar_informe_descoberts(
     data: date = None,
     format: str = "text"
