@@ -174,6 +174,62 @@ def init_db() -> None:
                 VALUES (13.0, 12.0, 20.0, 48.0, 7, 1)
             """)
         
+        
+        # Taula: motius_descobert (catàleg de motius per a descoberts)
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS motius_descobert (
+                cod TEXT PRIMARY KEY,
+                descripcio TEXT NOT NULL,
+                prioritat INTEGER NOT NULL,  -- 1=Crític, 2=Alta, 3=Mitjana, 4=Baixa
+                solucio_tipica TEXT,
+                categoria TEXT  -- plantilla, temporal, restriccio, desconegut
+            )
+        """)
+        
+        # Taula: descoberts (registre de descoberts detectats)
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS descoberts (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                servei_id TEXT NOT NULL,
+                data_inici TIMESTAMP NOT NULL,
+                motiu_cod TEXT NOT NULL,
+                detalls TEXT,
+                solucio_proposada TEXT,
+                resolt BOOLEAN DEFAULT 0,
+                data_resolucio TIMESTAMP,
+                assignat_a TEXT,
+                data_creacio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (servei_id) REFERENCES serveis(id),
+                FOREIGN KEY (motiu_cod) REFERENCES motius_descobert(cod)
+            )
+        """)
+        
+        # Inserir motius de descobert per defecte si no existeixen
+        cursor.execute("SELECT COUNT(*) FROM motius_descobert")
+        if cursor.fetchone()[0] == 0:
+            motius = [
+                ("falta_habilitacio", "No hi ha vigilants amb l'habilitació requerida", 1, 
+                 "Contractar vigilants amb l'habilitació necessària", "plantilla"),
+                ("binomi_no_disponible", "No hi ha prou vigilants per a binomi obligatori", 1,
+                 "Contractar vigilants addicionals o revisar binomi", "plantilla"),
+                ("tots_en_baixa", "Tots els vigilants amb habilitació estan de baixa", 2,
+                 "Revisar baixes i contractar temporalment", "temporal"),
+                ("conflicte_temporal", "Conflicte temporal amb altres serveis assignats", 2,
+                 "Reassignar serveis o contractar temporalment", "temporal"),
+                ("hores_setmanals_excedides", "Vigilant ha superat les hores setmanals màximes", 2,
+                 "Redistribuir càrrega o contractar temporalment", "restriccio"),
+                ("descans_insuficient", "No es compleix el descans mínim entre torns", 2,
+                 "Reassignar torns o contractar temporalment", "restriccio"),
+                ("preferencia_no_respectada", "No s'ha pogut respectar preferències del vigilant", 3,
+                 "Revisar preferències i redistribuir", "temporal"),
+                ("desconegut", "Motiu desconegut", 4,
+                 "Revisar manualment", "desconegut"),
+            ]
+            cursor.executemany("""
+                INSERT INTO motius_descobert (cod, descripcio, prioritat, solucio_tipica, categoria)
+                VALUES (?, ?, ?, ?, ?)
+            """, motius)
+        
         conn.commit()
 
 
@@ -193,6 +249,7 @@ def reset_db() -> None:
             "rolling_horizon_estat",
             "estadistiques",
             "parametres_legals",
+            "descoberts",
         ):
             conn.execute(f"DELETE FROM {table}")
         conn.commit()
@@ -848,6 +905,182 @@ def guardar_estat_rolling_horizon(
             estat_solver
         ))
         conn.commit()
+
+
+# ============================================================================
+# FUNCIONS CRUD PER A DESCOBERTS
+# ============================================================================
+
+
+def registrar_descobert(
+    servei_id: str,
+    data_inici: datetime,
+    motiu_cod: str,
+    detalls: str = "",
+    solucio_proposada: str = "",
+    assignat_a: Optional[str] = None
+) -> int:
+    """Registra un nou descobert a la base de dades."""
+    with _connect() as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO descoberts 
+            (servei_id, data_inici, motiu_cod, detalls, solucio_proposada, assignat_a)
+            VALUES (?, ?, ?, ?, ?, ?)
+        """, (
+            servei_id,
+            data_inici.isoformat(),
+            motiu_cod,
+            detalls,
+            solucio_proposada,
+            assignat_a
+        ))
+        conn.commit()
+        return cursor.lastrowid
+
+
+def obtenir_descoberts() -> List[Dict]:
+    """Obté tots els descoberts de la base de dades."""
+    with _connect() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM descoberts ORDER BY data_creacio DESC")
+        return [dict(row) for row in cursor.fetchall()]
+
+
+def obtenir_descoberts_pendents() -> List[Dict]:
+    """Obté tots els descoberts pendents de resolució."""
+    with _connect() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM descoberts WHERE resolt = 0 ORDER BY data_creacio DESC")
+        return [dict(row) for row in cursor.fetchall()]
+
+
+def obtenir_descoberts_per_dia(data: date) -> List[Dict]:
+    """Obté tots els descoberts per a un dia concret."""
+    with _connect() as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT d.* FROM descoberts d
+            JOIN serveis s ON d.servei_id = s.id
+            WHERE DATE(s.inici) = ?
+            ORDER BY s.inici
+        """, (data.isoformat(),))
+        return [dict(row) for row in cursor.fetchall()]
+
+
+def obtenir_motiu_descobert(cod: str) -> Optional[Dict]:
+    """Obté un motiu de descobert per codi."""
+    with _connect() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM motius_descobert WHERE cod = ?", (cod,))
+        row = cursor.fetchone()
+        if row:
+            return dict(row)
+    return None
+
+
+def obtenir_tots_motius_descobert() -> List[Dict]:
+    """Obté tots els motius de descobert."""
+    with _connect() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM motius_descobert ORDER BY prioritat")
+        return [dict(row) for row in cursor.fetchall()]
+
+
+def marcar_descobert_com_resolt(descobert_id: int, assignat_a: Optional[str] = None) -> None:
+    """Marca un descobert com a resolt."""
+    with _connect() as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+            UPDATE descoberts 
+            SET resolt = 1, data_resolucio = ?, assignat_a = ?
+            WHERE id = ?
+        """, (datetime.now().isoformat(), assignat_a, descobert_id))
+        conn.commit()
+
+
+def obtenir_estadistiques_descoberts() -> Dict:
+    """Obté estadístiques sobre els descoberts."""
+    with _connect() as conn:
+        cursor = conn.cursor()
+        
+        # Total descoberts
+        cursor.execute("SELECT COUNT(*) FROM descoberts")
+        total = cursor.fetchone()[0]
+        
+        # Descoberts pendents
+        cursor.execute("SELECT COUNT(*) FROM descoberts WHERE resolt = 0")
+        pendents = cursor.fetchone()[0]
+        
+        # Descoberts per motiu
+        cursor.execute("""
+            SELECT motiu_cod, COUNT(*) as count 
+            FROM descoberts 
+            GROUP BY motiu_cod 
+            ORDER BY count DESC
+        """)
+        per_motiu = {row["motiu_cod"]: row["count"] for row in cursor.fetchall()}
+        
+        # Descoberts per categoria
+        cursor.execute("""
+            SELECT md.categoria, COUNT(*) as count 
+            FROM descoberts d
+            JOIN motius_descobert md ON d.motiu_cod = md.cod
+            GROUP BY md.categoria
+        """)
+        per_categoria = {row["categoria"]: row["count"] for row in cursor.fetchall()}
+        
+        return {
+            "total": total,
+            "pendents": pendents,
+            "per_motiu": per_motiu,
+            "per_categoria": per_categoria,
+            "resolts": total - pendents
+        }
+
+
+def obtenir_informe_descoberts_diari() -> List[Dict]:
+    """Genera un informe diari de descoberts."""
+    with _connect() as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT 
+                DATE(s.inici) as dia,
+                COUNT(*) as total_descoberts,
+                GROUP_CONCAT(DISTINCT md.categoria, ", ") as categories,
+                GROUP_CONCAT(DISTINCT md.cod, ", ") as motius
+            FROM descoberts d
+            JOIN serveis s ON d.servei_id = s.id
+            JOIN motius_descobert md ON d.motiu_cod = md.cod
+            GROUP BY DATE(s.inici)
+            ORDER BY dia DESC
+        """)
+        return [dict(row) for row in cursor.fetchall()]
+
+
+def obtenir_dashboard_descoberts() -> Dict:
+    """Genera un dashboard complet de descoberts."""
+    stats = obtenir_estadistiques_descoberts()
+    
+    # Obtenir els últims 7 dies
+    with _connect() as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT 
+                DATE(s.inici) as dia,
+                COUNT(*) as count
+            FROM descoberts d
+            JOIN serveis s ON d.servei_id = s.id
+            GROUP BY DATE(s.inici)
+            ORDER BY dia DESC
+            LIMIT 7
+        """)
+        ultims_7_dies = [dict(row) for row in cursor.fetchall()]
+    
+    return {
+        "estadistiques": stats,
+        "ultims_7_dies": ultims_7_dies
+    }
 
 
 # Inicialitzar la base de dades al carregar el mòdul

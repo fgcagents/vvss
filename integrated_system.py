@@ -90,6 +90,91 @@ class SistemaIntegrat:
             if dia_inici <= self._dia_index(s) < dia_fi
         ]
     
+
+    def _compatible_temporalment(
+        self,
+        servei1: Servei,
+        servei2: Servei,
+        params: ParametresLegals,
+    ) -> bool:
+        """Comprova si dos serveis son compatibles temporalment per a un mateix vigilant."""
+        a, b = (servei1, servei2) if servei1.inici <= servei2.inici else (servei2, servei1)
+        
+        # 1. Comprovar solapament
+        if a.fi > b.inici:
+            return False
+        
+        # 2. Comprovar descans minim
+        gap_hores = (b.inici - a.fi).total_seconds() / 3600.0
+        requerit = params.descans_torn_llarg_hores if a.durada_hores >= params.llindar_torn_llarg_hores else params.descans_minim_hores
+        
+        return gap_hores >= requerit
+
+    def _troba_substitut(
+        self,
+        servei_urgent: Servei,
+        vigilants: List[Vigilant],
+        serveis_ja_assignats: Dict[str, List[Servei]],
+        params: ParametresLegals
+    ) -> Tuple[Optional[str], List[Dict]]:
+        """Troba un substitut per a un servei d'urgència.
+        
+        Returns:
+            Tuple amb (vigilant_substitut_id, candidats_avaluats).
+        """
+        from dataclasses import dataclass as dc
+        
+        @dc
+        class Candidat:
+            vigilant_id: str
+            hores_acumulades: float
+            motiu_descart: Optional[str] = None
+        
+        candidats = []
+        
+        # 1. Filtrar vigilants amb l'habilitació requerida
+        for v in vigilants:
+            if v.actiu and servei_urgent.habilitacio_requerida in v.habilitacions:
+                candidats.append(Candidat(
+                    vigilant_id=v.id,
+                    hores_acumulades=v.hores_acumulades
+                ))
+        
+        # 2. Filtrar vigilants no en baixa
+        candidats_disponibles = []
+        for c in candidats:
+            v = next(vig for vig in vigilants if vig.id == c.vigilant_id)
+            en_baixa = any(
+                not (servei_urgent.fi <= baixa_inici or servei_urgent.inici >= baixa_fi)
+                for baixa_inici, baixa_fi in v.baixes
+            )
+            if not en_baixa:
+                candidats_disponibles.append(c)
+        
+        # 3. Comprovar compatibilitat temporal amb serveis ja assignats
+        for c in candidats_disponibles:
+            v = next(vig for vig in vigilants if vig.id == c.vigilant_id)
+            serveis_vigilant = serveis_ja_assignats.get(v.id, [])
+            
+            for s_assignat in serveis_vigilant:
+                if not self._compatible_temporalment(s_assignat, servei_urgent, params):
+                    c.motiu_descart = f"Conflicte temporal amb {s_assignat.id}"
+                    break
+            else:
+                # 4. Comprovar hores setmanals
+                hores_servei = servei_urgent.durada_hores
+                hores_totals = c.hores_acumulades + hores_servei
+                if hores_totals > v.hores_max_setmana:
+                    c.motiu_descart = f"Excedeix hores setmanals ({hores_totals:.1f}/{v.hores_max_setmana})"
+        
+        # 5. Ordenar candidats per hores acumulades (preferir els menys carregats)
+        candidats_valids = [c for c in candidats_disponibles if c.motiu_descart is None]
+        candidats_valids.sort(key=lambda c: c.hores_acumulades)
+        
+        if candidats_valids:
+            return candidats_valids[0].vigilant_id, [{"vigilant_id": c.vigilant_id, "hores_acumulades": c.hores_acumulades, "motiu_descart": c.motiu_descart} for c in candidats]
+        else:
+            return None, candidats
     def inicialitzar_sistema(self) -> None:
         """Inicialitza el sistema amb dades d'exemple."""
         importar_dades_exemple()
@@ -196,13 +281,23 @@ class SistemaIntegrat:
                 estat_solver=resultat.estat,
             )
             
+            # Processar descoberts i registrar-los
+            from descoberts_manager import processar_resultat_i_descoberts
+            stats_descoberts = processar_resultat_i_descoberts(
+                resultat, 
+                vigilants_actualitzats, 
+                serveis_finestra, 
+                params
+            )
+            
             # Mostrar progress
             print(
                 f"Dia {dia_publicar:>2} | "
                 f"Estat: {resultat.estat:<9} | "
                 f"Temps: {resultat.temps_resolucio_segons:>6.3f}s | "
                 f"Assignats avui: {len(assignats_avui)} | "
-                f"Cobertura incompleta: {len(resultat.cobertura_incompleta)}"
+                f"Cobertura incompleta: {len(resultat.cobertura_incompleta)} | "
+                f"Descoberts: {stats_descoberts['descoberts_totals']} (Resolts: {stats_descoberts['descoberts_resolts_automaticament']})"
             )
             
             if errors:
@@ -251,7 +346,7 @@ class SistemaIntegrat:
         Returns:
             Tuple amb (vigilant_substitut, candidats_avaluats).
         """
-        from urgencia import troba_substitut
+        # Substitució d'urgència integrada directament
         
         # Carregar dades de la BD
         vigilants = obtenir_tots_vigilants()
@@ -269,8 +364,8 @@ class SistemaIntegrat:
         for (v_id, s_id), publicat in assignacions_actuals.items():
             serveis_ja_assignats[v_id].append(obtenir_servei(s_id))
         
-        # Trobar substitut
-        vigilant_substitut, candidats = troba_substitut(
+        # Trobar substitut (utilitzem la funció local)
+        vigilant_substitut, candidats = self._troba_substitut(
             servei_urgent, 
             vigilants, 
             serveis_ja_assignats, 
