@@ -126,6 +126,7 @@ def valida_resultat(
     vigilants: list[Vigilant],
     serveis: list[Servei],
     params: ParametresLegals,
+    permetre_cobertura_parcial: bool = False,
 ) -> list[str]:
     """Valida que el resultat compleix totes les restriccions legals.
     
@@ -134,6 +135,8 @@ def valida_resultat(
         vigilants: Llista de vigilants.
         serveis: Llista de serveis.
         params: Paràmetres legals.
+        permetre_cobertura_parcial: Si True, els dèficits de cobertura
+            ordinària es reporten al resultat, però no com a error legal.
     
     Returns:
         Llista d'errors trobats (buida si tot és correcte).
@@ -149,7 +152,7 @@ def valida_resultat(
         if s.binomi_obligatori:
             if coberts != 2:
                 errors.append(f"Servei {s.id} (binomi obligatori): {coberts} vigilants (requerits: 2)")
-        elif coberts < s.vigilants_requerits:
+        elif coberts < s.vigilants_requerits and not permetre_cobertura_parcial:
             errors.append(f"Servei {s.id}: només {coberts}/{s.vigilants_requerits} vigilants")
     
     # 2. Validar descans mínim entre serveis

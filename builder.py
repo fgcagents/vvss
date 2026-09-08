@@ -138,7 +138,8 @@ class ModelBuilder:
                     start = int(s.inici.timestamp())
                     duration = int(s.durada_hores * 3600)
                     interval = self.model.NewOptionalIntervalVar(
-                        start, start + duration, xv, f"interval_{v.id}_{s.id}"
+                        start, duration, start + duration, xv,
+                        f"interval_{v.id}_{s.id}"
                     )
                     intervals.append((s, interval))
             
@@ -147,9 +148,15 @@ class ModelBuilder:
                 interval_vars = [iv for _, iv in intervals]
                 self.model.AddNoOverlap(interval_vars)
             
-            # Restricció de descans mínim entre intervals consecutius
-            # (Aquesta part és complexa amb IntervalVar, per ara mantenim la versió O(n²))
-            # TODO: Implementar amb AddDistance() o restriccions personalitzades
+            # AddNoOverlap només impedeix solapaments; el descans legal
+            # continua requerint les restriccions de parells.
+            serveis_v = [s for s, _ in intervals]
+            for i, s1 in enumerate(serveis_v):
+                for s2 in serveis_v[i + 1:]:
+                    a, b = (s1, s2) if s1.inici <= s2.inici else (s2, s1)
+                    gap_hores = (b.inici - a.fi).total_seconds() / 3600.0
+                    if gap_hores < _descans_requerit(a, self.params):
+                        self.model.Add(self.var(v.id, a.id) + self.var(v.id, b.id) <= 1)
     
     def add_jornada_max_setmanal(self) -> None:
         """Afegeix restricció de jornada màxima setmanal per vigilant."""

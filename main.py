@@ -8,6 +8,14 @@ from exporter import exporta_a_csv, imprimeix_quadrant
 
 
 def main():
+    # Evita que les icones de la sortida fallin a consoles Windows CP1252.
+    try:
+        import sys
+        if hasattr(sys.stdout, "reconfigure"):
+            sys.stdout.reconfigure(encoding="utf-8")
+    except OSError:
+        pass
+
     vigilants = genera_vigilants()
     serveis = genera_serveis(dies=7)
     params = ParametresLegals()
@@ -30,7 +38,10 @@ def main():
     )
 
     # Validar el resultat
-    errors = valida_resultat(resultat, vigilants, serveis, params)
+    errors = valida_resultat(
+        resultat, vigilants, serveis, params,
+        permetre_cobertura_parcial=True,
+    )
     
     # Imprimir quadrant
     imprimeix_quadrant(resultat, vigilants, serveis)

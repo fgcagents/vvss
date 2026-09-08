@@ -1,0 +1,1716 @@
+{
+  "metadata": {
+    "data_generacio": "2026-09-08T16:48:06.734313",
+    "estat": "PUBLICAT",
+    "temps_resolucio_segons": 0.0,
+    "params": "quadrant_actual.json"
+  },
+  "estadistiques": {
+    "total_serveis": 112,
+    "serveis_coberts": 65,
+    "serveis_sense_cobertura": 47,
+    "total_assignacions": 85,
+    "vigilants_actius": 10,
+    "temps_resolucio_segons": 0.0,
+    "estat_solver": "PUBLICAT"
+  },
+  "vigilants": {
+    "V01": {
+      "id": "V01",
+      "habilitacions": [
+        "cctv",
+        "no_armat"
+      ],
+      "hores_objectiu_periode": 80.0,
+      "hores_acumulades": 382.0000000335276,
+      "hores_max_setmana": 48.0,
+      "zona_preferida": "Central",
+      "torn_preferit": "nit",
+      "actiu": true,
+      "hores_finals": 382.0000000335276
+    },
+    "V02": {
+      "id": "V02",
+      "habilitacions": [
+        "cctv",
+        "no_armat"
+      ],
+      "hores_objectiu_periode": 80.0,
+      "hores_acumulades": 367.0000000335276,
+      "hores_max_setmana": 48.0,
+      "zona_preferida": "Central",
+      "torn_preferit": "nit",
+      "actiu": true,
+      "hores_finals": 367.0000000335276
+    },
+    "V03": {
+      "id": "V03",
+      "habilitacions": [
+        "cctv",
+        "no_armat"
+      ],
+      "hores_objectiu_periode": 80.0,
+      "hores_acumulades": 412.0000000335276,
+      "hores_max_setmana": 48.0,
+      "zona_preferida": "Nord",
+      "torn_preferit": "nit",
+      "actiu": true,
+      "hores_finals": 412.0000000335276
+    },
+    "V04": {
+      "id": "V04",
+      "habilitacions": [
+        "cctv",
+        "no_armat"
+      ],
+      "hores_objectiu_periode": 80.0,
+      "hores_acumulades": 332.0000000335276,
+      "hores_max_setmana": 48.0,
+      "zona_preferida": "Nord",
+      "torn_preferit": "nit",
+      "actiu": true,
+      "hores_finals": 332.0000000335276
+    },
+    "V05": {
+      "id": "V05",
+      "habilitacions": [
+        "no_armat"
+      ],
+      "hores_objectiu_periode": 80.0,
+      "hores_acumulades": 344.0000000298023,
+      "hores_max_setmana": 48.0,
+      "zona_preferida": "Central",
+      "torn_preferit": "mati",
+      "actiu": true,
+      "hores_finals": 344.0000000298023
+    },
+    "V06": {
+      "id": "V06",
+      "habilitacions": [
+        "no_armat"
+      ],
+      "hores_objectiu_periode": 80.0,
+      "hores_acumulades": 379.9999999254942,
+      "hores_max_setmana": 48.0,
+      "zona_preferida": "Central",
+      "torn_preferit": "tarda",
+      "actiu": true,
+      "hores_finals": 379.9999999254942
+    },
+    "V07": {
+      "id": "V07",
+      "habilitacions": [
+        "no_armat"
+      ],
+      "hores_objectiu_periode": 80.0,
+      "hores_acumulades": 355.0000000372529,
+      "hores_max_setmana": 48.0,
+      "zona_preferida": "Sud",
+      "torn_preferit": "mati",
+      "actiu": true,
+      "hores_finals": 355.0000000372529
+    },
+    "V08": {
+      "id": "V08",
+      "habilitacions": [
+        "no_armat"
+      ],
+      "hores_objectiu_periode": 80.0,
+      "hores_acumulades": 353.9999999515712,
+      "hores_max_setmana": 48.0,
+      "zona_preferida": "Sud",
+      "torn_preferit": "tarda",
+      "actiu": true,
+      "hores_finals": 353.9999999515712
+    },
+    "V09": {
+      "id": "V09",
+      "habilitacions": [
+        "cctv",
+        "no_armat"
+      ],
+      "hores_objectiu_periode": 80.0,
+      "hores_acumulades": 368.00000001117587,
+      "hores_max_setmana": 48.0,
+      "zona_preferida": "Nord",
+      "torn_preferit": "nit",
+      "actiu": true,
+      "hores_finals": 368.00000001117587
+    },
+    "V10": {
+      "id": "V10",
+      "habilitacions": [
+        "no_armat"
+      ],
+      "hores_objectiu_periode": 40.0,
+      "hores_acumulades": 206.00000002607703,
+      "hores_max_setmana": 48.0,
+      "zona_preferida": "Central",
+      "torn_preferit": "mati",
+      "actiu": true,
+      "hores_finals": 206.00000002607703
+    }
+  },
+  "serveis": {
+    "CEN-mati-0": {
+      "id": "CEN-mati-0",
+      "zona": "Central",
+      "inici": "2026-09-07T06:00:00",
+      "fi": "2026-09-07T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-mati-0": {
+      "id": "NOR-mati-0",
+      "zona": "Nord",
+      "inici": "2026-09-07T06:00:00",
+      "fi": "2026-09-07T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-mati-0": {
+      "id": "SUD-mati-0",
+      "zona": "Sud",
+      "inici": "2026-09-07T06:00:00",
+      "fi": "2026-09-07T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-tarda-0": {
+      "id": "CEN-tarda-0",
+      "zona": "Central",
+      "inici": "2026-09-07T14:00:00",
+      "fi": "2026-09-07T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-tarda-0": {
+      "id": "NOR-tarda-0",
+      "zona": "Nord",
+      "inici": "2026-09-07T14:00:00",
+      "fi": "2026-09-07T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-tarda-0": {
+      "id": "SUD-tarda-0",
+      "zona": "Sud",
+      "inici": "2026-09-07T14:00:00",
+      "fi": "2026-09-07T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-nit-0": {
+      "id": "CEN-nit-0",
+      "zona": "Central",
+      "inici": "2026-09-07T22:00:00",
+      "fi": "2026-09-08T06:00:00",
+      "habilitacio_requerida": "cctv",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "NOR-nit-0": {
+      "id": "NOR-nit-0",
+      "zona": "Nord",
+      "inici": "2026-09-07T22:00:00",
+      "fi": "2026-09-08T06:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "CEN-mati-1": {
+      "id": "CEN-mati-1",
+      "zona": "Central",
+      "inici": "2026-09-08T06:00:00",
+      "fi": "2026-09-08T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-mati-1": {
+      "id": "NOR-mati-1",
+      "zona": "Nord",
+      "inici": "2026-09-08T06:00:00",
+      "fi": "2026-09-08T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-mati-1": {
+      "id": "SUD-mati-1",
+      "zona": "Sud",
+      "inici": "2026-09-08T06:00:00",
+      "fi": "2026-09-08T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-tarda-1": {
+      "id": "CEN-tarda-1",
+      "zona": "Central",
+      "inici": "2026-09-08T14:00:00",
+      "fi": "2026-09-08T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-tarda-1": {
+      "id": "NOR-tarda-1",
+      "zona": "Nord",
+      "inici": "2026-09-08T14:00:00",
+      "fi": "2026-09-08T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-tarda-1": {
+      "id": "SUD-tarda-1",
+      "zona": "Sud",
+      "inici": "2026-09-08T14:00:00",
+      "fi": "2026-09-08T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-nit-1": {
+      "id": "CEN-nit-1",
+      "zona": "Central",
+      "inici": "2026-09-08T22:00:00",
+      "fi": "2026-09-09T06:00:00",
+      "habilitacio_requerida": "cctv",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "NOR-nit-1": {
+      "id": "NOR-nit-1",
+      "zona": "Nord",
+      "inici": "2026-09-08T22:00:00",
+      "fi": "2026-09-09T06:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "CEN-mati-2": {
+      "id": "CEN-mati-2",
+      "zona": "Central",
+      "inici": "2026-09-09T06:00:00",
+      "fi": "2026-09-09T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-mati-2": {
+      "id": "NOR-mati-2",
+      "zona": "Nord",
+      "inici": "2026-09-09T06:00:00",
+      "fi": "2026-09-09T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-mati-2": {
+      "id": "SUD-mati-2",
+      "zona": "Sud",
+      "inici": "2026-09-09T06:00:00",
+      "fi": "2026-09-09T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-tarda-2": {
+      "id": "CEN-tarda-2",
+      "zona": "Central",
+      "inici": "2026-09-09T14:00:00",
+      "fi": "2026-09-09T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-tarda-2": {
+      "id": "NOR-tarda-2",
+      "zona": "Nord",
+      "inici": "2026-09-09T14:00:00",
+      "fi": "2026-09-09T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-tarda-2": {
+      "id": "SUD-tarda-2",
+      "zona": "Sud",
+      "inici": "2026-09-09T14:00:00",
+      "fi": "2026-09-09T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-nit-2": {
+      "id": "CEN-nit-2",
+      "zona": "Central",
+      "inici": "2026-09-09T22:00:00",
+      "fi": "2026-09-10T06:00:00",
+      "habilitacio_requerida": "cctv",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "NOR-nit-2": {
+      "id": "NOR-nit-2",
+      "zona": "Nord",
+      "inici": "2026-09-09T22:00:00",
+      "fi": "2026-09-10T06:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "CEN-mati-3": {
+      "id": "CEN-mati-3",
+      "zona": "Central",
+      "inici": "2026-09-10T06:00:00",
+      "fi": "2026-09-10T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-mati-3": {
+      "id": "NOR-mati-3",
+      "zona": "Nord",
+      "inici": "2026-09-10T06:00:00",
+      "fi": "2026-09-10T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-mati-3": {
+      "id": "SUD-mati-3",
+      "zona": "Sud",
+      "inici": "2026-09-10T06:00:00",
+      "fi": "2026-09-10T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-tarda-3": {
+      "id": "CEN-tarda-3",
+      "zona": "Central",
+      "inici": "2026-09-10T14:00:00",
+      "fi": "2026-09-10T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-tarda-3": {
+      "id": "NOR-tarda-3",
+      "zona": "Nord",
+      "inici": "2026-09-10T14:00:00",
+      "fi": "2026-09-10T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-tarda-3": {
+      "id": "SUD-tarda-3",
+      "zona": "Sud",
+      "inici": "2026-09-10T14:00:00",
+      "fi": "2026-09-10T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-nit-3": {
+      "id": "CEN-nit-3",
+      "zona": "Central",
+      "inici": "2026-09-10T22:00:00",
+      "fi": "2026-09-11T06:00:00",
+      "habilitacio_requerida": "cctv",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "NOR-nit-3": {
+      "id": "NOR-nit-3",
+      "zona": "Nord",
+      "inici": "2026-09-10T22:00:00",
+      "fi": "2026-09-11T06:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "CEN-mati-4": {
+      "id": "CEN-mati-4",
+      "zona": "Central",
+      "inici": "2026-09-11T06:00:00",
+      "fi": "2026-09-11T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-mati-4": {
+      "id": "NOR-mati-4",
+      "zona": "Nord",
+      "inici": "2026-09-11T06:00:00",
+      "fi": "2026-09-11T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-mati-4": {
+      "id": "SUD-mati-4",
+      "zona": "Sud",
+      "inici": "2026-09-11T06:00:00",
+      "fi": "2026-09-11T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-tarda-4": {
+      "id": "CEN-tarda-4",
+      "zona": "Central",
+      "inici": "2026-09-11T14:00:00",
+      "fi": "2026-09-11T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-tarda-4": {
+      "id": "NOR-tarda-4",
+      "zona": "Nord",
+      "inici": "2026-09-11T14:00:00",
+      "fi": "2026-09-11T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-tarda-4": {
+      "id": "SUD-tarda-4",
+      "zona": "Sud",
+      "inici": "2026-09-11T14:00:00",
+      "fi": "2026-09-11T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-nit-4": {
+      "id": "CEN-nit-4",
+      "zona": "Central",
+      "inici": "2026-09-11T22:00:00",
+      "fi": "2026-09-12T06:00:00",
+      "habilitacio_requerida": "cctv",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "NOR-nit-4": {
+      "id": "NOR-nit-4",
+      "zona": "Nord",
+      "inici": "2026-09-11T22:00:00",
+      "fi": "2026-09-12T06:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "CEN-mati-5": {
+      "id": "CEN-mati-5",
+      "zona": "Central",
+      "inici": "2026-09-12T06:00:00",
+      "fi": "2026-09-12T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-mati-5": {
+      "id": "NOR-mati-5",
+      "zona": "Nord",
+      "inici": "2026-09-12T06:00:00",
+      "fi": "2026-09-12T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-mati-5": {
+      "id": "SUD-mati-5",
+      "zona": "Sud",
+      "inici": "2026-09-12T06:00:00",
+      "fi": "2026-09-12T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-tarda-5": {
+      "id": "CEN-tarda-5",
+      "zona": "Central",
+      "inici": "2026-09-12T14:00:00",
+      "fi": "2026-09-12T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-tarda-5": {
+      "id": "NOR-tarda-5",
+      "zona": "Nord",
+      "inici": "2026-09-12T14:00:00",
+      "fi": "2026-09-12T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-tarda-5": {
+      "id": "SUD-tarda-5",
+      "zona": "Sud",
+      "inici": "2026-09-12T14:00:00",
+      "fi": "2026-09-12T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-nit-5": {
+      "id": "CEN-nit-5",
+      "zona": "Central",
+      "inici": "2026-09-12T22:00:00",
+      "fi": "2026-09-13T06:00:00",
+      "habilitacio_requerida": "cctv",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "NOR-nit-5": {
+      "id": "NOR-nit-5",
+      "zona": "Nord",
+      "inici": "2026-09-12T22:00:00",
+      "fi": "2026-09-13T06:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "CEN-mati-6": {
+      "id": "CEN-mati-6",
+      "zona": "Central",
+      "inici": "2026-09-13T06:00:00",
+      "fi": "2026-09-13T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-mati-6": {
+      "id": "NOR-mati-6",
+      "zona": "Nord",
+      "inici": "2026-09-13T06:00:00",
+      "fi": "2026-09-13T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-mati-6": {
+      "id": "SUD-mati-6",
+      "zona": "Sud",
+      "inici": "2026-09-13T06:00:00",
+      "fi": "2026-09-13T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-tarda-6": {
+      "id": "CEN-tarda-6",
+      "zona": "Central",
+      "inici": "2026-09-13T14:00:00",
+      "fi": "2026-09-13T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-tarda-6": {
+      "id": "NOR-tarda-6",
+      "zona": "Nord",
+      "inici": "2026-09-13T14:00:00",
+      "fi": "2026-09-13T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-tarda-6": {
+      "id": "SUD-tarda-6",
+      "zona": "Sud",
+      "inici": "2026-09-13T14:00:00",
+      "fi": "2026-09-13T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-nit-6": {
+      "id": "CEN-nit-6",
+      "zona": "Central",
+      "inici": "2026-09-13T22:00:00",
+      "fi": "2026-09-14T06:00:00",
+      "habilitacio_requerida": "cctv",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "NOR-nit-6": {
+      "id": "NOR-nit-6",
+      "zona": "Nord",
+      "inici": "2026-09-13T22:00:00",
+      "fi": "2026-09-14T06:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "CEN-mati-7": {
+      "id": "CEN-mati-7",
+      "zona": "Central",
+      "inici": "2026-09-14T06:00:00",
+      "fi": "2026-09-14T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-mati-7": {
+      "id": "NOR-mati-7",
+      "zona": "Nord",
+      "inici": "2026-09-14T06:00:00",
+      "fi": "2026-09-14T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-mati-7": {
+      "id": "SUD-mati-7",
+      "zona": "Sud",
+      "inici": "2026-09-14T06:00:00",
+      "fi": "2026-09-14T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-tarda-7": {
+      "id": "CEN-tarda-7",
+      "zona": "Central",
+      "inici": "2026-09-14T14:00:00",
+      "fi": "2026-09-14T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-tarda-7": {
+      "id": "NOR-tarda-7",
+      "zona": "Nord",
+      "inici": "2026-09-14T14:00:00",
+      "fi": "2026-09-14T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-tarda-7": {
+      "id": "SUD-tarda-7",
+      "zona": "Sud",
+      "inici": "2026-09-14T14:00:00",
+      "fi": "2026-09-14T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-nit-7": {
+      "id": "CEN-nit-7",
+      "zona": "Central",
+      "inici": "2026-09-14T22:00:00",
+      "fi": "2026-09-15T06:00:00",
+      "habilitacio_requerida": "cctv",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "NOR-nit-7": {
+      "id": "NOR-nit-7",
+      "zona": "Nord",
+      "inici": "2026-09-14T22:00:00",
+      "fi": "2026-09-15T06:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "CEN-mati-8": {
+      "id": "CEN-mati-8",
+      "zona": "Central",
+      "inici": "2026-09-15T06:00:00",
+      "fi": "2026-09-15T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-mati-8": {
+      "id": "NOR-mati-8",
+      "zona": "Nord",
+      "inici": "2026-09-15T06:00:00",
+      "fi": "2026-09-15T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-mati-8": {
+      "id": "SUD-mati-8",
+      "zona": "Sud",
+      "inici": "2026-09-15T06:00:00",
+      "fi": "2026-09-15T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-tarda-8": {
+      "id": "CEN-tarda-8",
+      "zona": "Central",
+      "inici": "2026-09-15T14:00:00",
+      "fi": "2026-09-15T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-tarda-8": {
+      "id": "NOR-tarda-8",
+      "zona": "Nord",
+      "inici": "2026-09-15T14:00:00",
+      "fi": "2026-09-15T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-tarda-8": {
+      "id": "SUD-tarda-8",
+      "zona": "Sud",
+      "inici": "2026-09-15T14:00:00",
+      "fi": "2026-09-15T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-nit-8": {
+      "id": "CEN-nit-8",
+      "zona": "Central",
+      "inici": "2026-09-15T22:00:00",
+      "fi": "2026-09-16T06:00:00",
+      "habilitacio_requerida": "cctv",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "NOR-nit-8": {
+      "id": "NOR-nit-8",
+      "zona": "Nord",
+      "inici": "2026-09-15T22:00:00",
+      "fi": "2026-09-16T06:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "CEN-mati-9": {
+      "id": "CEN-mati-9",
+      "zona": "Central",
+      "inici": "2026-09-16T06:00:00",
+      "fi": "2026-09-16T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-mati-9": {
+      "id": "NOR-mati-9",
+      "zona": "Nord",
+      "inici": "2026-09-16T06:00:00",
+      "fi": "2026-09-16T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-mati-9": {
+      "id": "SUD-mati-9",
+      "zona": "Sud",
+      "inici": "2026-09-16T06:00:00",
+      "fi": "2026-09-16T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-tarda-9": {
+      "id": "CEN-tarda-9",
+      "zona": "Central",
+      "inici": "2026-09-16T14:00:00",
+      "fi": "2026-09-16T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-tarda-9": {
+      "id": "NOR-tarda-9",
+      "zona": "Nord",
+      "inici": "2026-09-16T14:00:00",
+      "fi": "2026-09-16T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-tarda-9": {
+      "id": "SUD-tarda-9",
+      "zona": "Sud",
+      "inici": "2026-09-16T14:00:00",
+      "fi": "2026-09-16T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-nit-9": {
+      "id": "CEN-nit-9",
+      "zona": "Central",
+      "inici": "2026-09-16T22:00:00",
+      "fi": "2026-09-17T06:00:00",
+      "habilitacio_requerida": "cctv",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "NOR-nit-9": {
+      "id": "NOR-nit-9",
+      "zona": "Nord",
+      "inici": "2026-09-16T22:00:00",
+      "fi": "2026-09-17T06:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "CEN-mati-10": {
+      "id": "CEN-mati-10",
+      "zona": "Central",
+      "inici": "2026-09-17T06:00:00",
+      "fi": "2026-09-17T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-mati-10": {
+      "id": "NOR-mati-10",
+      "zona": "Nord",
+      "inici": "2026-09-17T06:00:00",
+      "fi": "2026-09-17T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-mati-10": {
+      "id": "SUD-mati-10",
+      "zona": "Sud",
+      "inici": "2026-09-17T06:00:00",
+      "fi": "2026-09-17T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-tarda-10": {
+      "id": "CEN-tarda-10",
+      "zona": "Central",
+      "inici": "2026-09-17T14:00:00",
+      "fi": "2026-09-17T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-tarda-10": {
+      "id": "NOR-tarda-10",
+      "zona": "Nord",
+      "inici": "2026-09-17T14:00:00",
+      "fi": "2026-09-17T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-tarda-10": {
+      "id": "SUD-tarda-10",
+      "zona": "Sud",
+      "inici": "2026-09-17T14:00:00",
+      "fi": "2026-09-17T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-nit-10": {
+      "id": "CEN-nit-10",
+      "zona": "Central",
+      "inici": "2026-09-17T22:00:00",
+      "fi": "2026-09-18T06:00:00",
+      "habilitacio_requerida": "cctv",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "NOR-nit-10": {
+      "id": "NOR-nit-10",
+      "zona": "Nord",
+      "inici": "2026-09-17T22:00:00",
+      "fi": "2026-09-18T06:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "CEN-mati-11": {
+      "id": "CEN-mati-11",
+      "zona": "Central",
+      "inici": "2026-09-18T06:00:00",
+      "fi": "2026-09-18T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-mati-11": {
+      "id": "NOR-mati-11",
+      "zona": "Nord",
+      "inici": "2026-09-18T06:00:00",
+      "fi": "2026-09-18T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-mati-11": {
+      "id": "SUD-mati-11",
+      "zona": "Sud",
+      "inici": "2026-09-18T06:00:00",
+      "fi": "2026-09-18T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-tarda-11": {
+      "id": "CEN-tarda-11",
+      "zona": "Central",
+      "inici": "2026-09-18T14:00:00",
+      "fi": "2026-09-18T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-tarda-11": {
+      "id": "NOR-tarda-11",
+      "zona": "Nord",
+      "inici": "2026-09-18T14:00:00",
+      "fi": "2026-09-18T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-tarda-11": {
+      "id": "SUD-tarda-11",
+      "zona": "Sud",
+      "inici": "2026-09-18T14:00:00",
+      "fi": "2026-09-18T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-nit-11": {
+      "id": "CEN-nit-11",
+      "zona": "Central",
+      "inici": "2026-09-18T22:00:00",
+      "fi": "2026-09-19T06:00:00",
+      "habilitacio_requerida": "cctv",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "NOR-nit-11": {
+      "id": "NOR-nit-11",
+      "zona": "Nord",
+      "inici": "2026-09-18T22:00:00",
+      "fi": "2026-09-19T06:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "CEN-mati-12": {
+      "id": "CEN-mati-12",
+      "zona": "Central",
+      "inici": "2026-09-19T06:00:00",
+      "fi": "2026-09-19T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-mati-12": {
+      "id": "NOR-mati-12",
+      "zona": "Nord",
+      "inici": "2026-09-19T06:00:00",
+      "fi": "2026-09-19T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-mati-12": {
+      "id": "SUD-mati-12",
+      "zona": "Sud",
+      "inici": "2026-09-19T06:00:00",
+      "fi": "2026-09-19T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-tarda-12": {
+      "id": "CEN-tarda-12",
+      "zona": "Central",
+      "inici": "2026-09-19T14:00:00",
+      "fi": "2026-09-19T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-tarda-12": {
+      "id": "NOR-tarda-12",
+      "zona": "Nord",
+      "inici": "2026-09-19T14:00:00",
+      "fi": "2026-09-19T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-tarda-12": {
+      "id": "SUD-tarda-12",
+      "zona": "Sud",
+      "inici": "2026-09-19T14:00:00",
+      "fi": "2026-09-19T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-nit-12": {
+      "id": "CEN-nit-12",
+      "zona": "Central",
+      "inici": "2026-09-19T22:00:00",
+      "fi": "2026-09-20T06:00:00",
+      "habilitacio_requerida": "cctv",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "NOR-nit-12": {
+      "id": "NOR-nit-12",
+      "zona": "Nord",
+      "inici": "2026-09-19T22:00:00",
+      "fi": "2026-09-20T06:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "CEN-mati-13": {
+      "id": "CEN-mati-13",
+      "zona": "Central",
+      "inici": "2026-09-20T06:00:00",
+      "fi": "2026-09-20T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-mati-13": {
+      "id": "NOR-mati-13",
+      "zona": "Nord",
+      "inici": "2026-09-20T06:00:00",
+      "fi": "2026-09-20T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-mati-13": {
+      "id": "SUD-mati-13",
+      "zona": "Sud",
+      "inici": "2026-09-20T06:00:00",
+      "fi": "2026-09-20T14:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "mati",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-tarda-13": {
+      "id": "CEN-tarda-13",
+      "zona": "Central",
+      "inici": "2026-09-20T14:00:00",
+      "fi": "2026-09-20T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "NOR-tarda-13": {
+      "id": "NOR-tarda-13",
+      "zona": "Nord",
+      "inici": "2026-09-20T14:00:00",
+      "fi": "2026-09-20T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "SUD-tarda-13": {
+      "id": "SUD-tarda-13",
+      "zona": "Sud",
+      "inici": "2026-09-20T14:00:00",
+      "fi": "2026-09-20T22:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 1,
+      "torn": "tarda",
+      "binomi_obligatori": false,
+      "durada_hores": 8.0
+    },
+    "CEN-nit-13": {
+      "id": "CEN-nit-13",
+      "zona": "Central",
+      "inici": "2026-09-20T22:00:00",
+      "fi": "2026-09-21T06:00:00",
+      "habilitacio_requerida": "cctv",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    },
+    "NOR-nit-13": {
+      "id": "NOR-nit-13",
+      "zona": "Nord",
+      "inici": "2026-09-20T22:00:00",
+      "fi": "2026-09-21T06:00:00",
+      "habilitacio_requerida": "no_armat",
+      "vigilants_requerits": 2,
+      "torn": "nit",
+      "binomi_obligatori": true,
+      "durada_hores": 8.0
+    }
+  },
+  "assignacions": {
+    "per_vigilant": {
+      "V01": [
+        "CEN-nit-0",
+        "CEN-nit-1",
+        "CEN-nit-2",
+        "CEN-nit-3",
+        "CEN-nit-4",
+        "CEN-nit-5",
+        "CEN-nit-7",
+        "CEN-nit-8",
+        "CEN-nit-9"
+      ],
+      "V02": [
+        "CEN-nit-0",
+        "CEN-nit-1",
+        "CEN-nit-2",
+        "CEN-nit-3",
+        "CEN-nit-5",
+        "CEN-nit-6",
+        "CEN-nit-7",
+        "CEN-nit-8",
+        "CEN-nit-9"
+      ],
+      "V03": [
+        "NOR-nit-0",
+        "NOR-nit-1",
+        "NOR-nit-2",
+        "NOR-nit-3",
+        "NOR-nit-4",
+        "NOR-nit-5",
+        "NOR-nit-6",
+        "NOR-nit-7",
+        "NOR-nit-8"
+      ],
+      "V04": [
+        "NOR-nit-0",
+        "NOR-nit-1",
+        "NOR-nit-2",
+        "NOR-nit-3",
+        "CEN-nit-4",
+        "NOR-nit-5",
+        "CEN-nit-6",
+        "NOR-mati-8",
+        "NOR-mati-9"
+      ],
+      "V05": [
+        "NOR-mati-0",
+        "NOR-mati-1",
+        "CEN-mati-2",
+        "CEN-mati-4",
+        "CEN-mati-5",
+        "CEN-mati-6",
+        "CEN-mati-8",
+        "CEN-mati-9"
+      ],
+      "V06": [
+        "CEN-tarda-0",
+        "CEN-tarda-1",
+        "CEN-tarda-2",
+        "CEN-tarda-3",
+        "CEN-tarda-4",
+        "CEN-tarda-5",
+        "CEN-tarda-6",
+        "CEN-tarda-7",
+        "CEN-tarda-8",
+        "CEN-tarda-9"
+      ],
+      "V07": [
+        "SUD-mati-0",
+        "SUD-mati-1",
+        "SUD-mati-2",
+        "SUD-mati-3",
+        "SUD-mati-4",
+        "SUD-mati-5",
+        "SUD-mati-6",
+        "SUD-mati-7",
+        "SUD-mati-8",
+        "SUD-mati-9"
+      ],
+      "V08": [
+        "SUD-tarda-0",
+        "SUD-tarda-1",
+        "SUD-tarda-2",
+        "SUD-tarda-3",
+        "SUD-tarda-4",
+        "SUD-tarda-7",
+        "SUD-tarda-8",
+        "NOR-nit-9"
+      ],
+      "V09": [
+        "NOR-tarda-0",
+        "NOR-mati-4",
+        "NOR-mati-5",
+        "NOR-nit-6",
+        "NOR-nit-7",
+        "NOR-nit-9"
+      ],
+      "V10": [
+        "CEN-mati-0",
+        "CEN-mati-1",
+        "NOR-mati-2",
+        "CEN-mati-3",
+        "NOR-nit-4",
+        "CEN-mati-7",
+        "NOR-nit-8"
+      ]
+    },
+    "per_servei": {
+      "CEN-nit-0": [
+        "V01",
+        "V02"
+      ],
+      "NOR-nit-0": [
+        "V03",
+        "V04"
+      ],
+      "NOR-mati-0": [
+        "V05"
+      ],
+      "CEN-tarda-0": [
+        "V06"
+      ],
+      "SUD-mati-0": [
+        "V07"
+      ],
+      "SUD-tarda-0": [
+        "V08"
+      ],
+      "NOR-tarda-0": [
+        "V09"
+      ],
+      "CEN-mati-0": [
+        "V10"
+      ],
+      "CEN-nit-1": [
+        "V01",
+        "V02"
+      ],
+      "NOR-nit-1": [
+        "V03",
+        "V04"
+      ],
+      "NOR-mati-1": [
+        "V05"
+      ],
+      "CEN-tarda-1": [
+        "V06"
+      ],
+      "SUD-mati-1": [
+        "V07"
+      ],
+      "SUD-tarda-1": [
+        "V08"
+      ],
+      "CEN-mati-1": [
+        "V10"
+      ],
+      "CEN-nit-2": [
+        "V01",
+        "V02"
+      ],
+      "NOR-nit-2": [
+        "V03",
+        "V04"
+      ],
+      "CEN-mati-2": [
+        "V05"
+      ],
+      "CEN-tarda-2": [
+        "V06"
+      ],
+      "SUD-mati-2": [
+        "V07"
+      ],
+      "SUD-tarda-2": [
+        "V08"
+      ],
+      "NOR-mati-2": [
+        "V10"
+      ],
+      "CEN-nit-3": [
+        "V01",
+        "V02"
+      ],
+      "NOR-nit-3": [
+        "V03",
+        "V04"
+      ],
+      "CEN-tarda-3": [
+        "V06"
+      ],
+      "SUD-mati-3": [
+        "V07"
+      ],
+      "SUD-tarda-3": [
+        "V08"
+      ],
+      "CEN-mati-3": [
+        "V10"
+      ],
+      "CEN-nit-4": [
+        "V01",
+        "V04"
+      ],
+      "NOR-nit-4": [
+        "V03",
+        "V10"
+      ],
+      "CEN-mati-4": [
+        "V05"
+      ],
+      "CEN-tarda-4": [
+        "V06"
+      ],
+      "SUD-mati-4": [
+        "V07"
+      ],
+      "SUD-tarda-4": [
+        "V08"
+      ],
+      "NOR-mati-4": [
+        "V09"
+      ],
+      "CEN-nit-5": [
+        "V01",
+        "V02"
+      ],
+      "NOR-nit-5": [
+        "V03",
+        "V04"
+      ],
+      "CEN-mati-5": [
+        "V05"
+      ],
+      "CEN-tarda-5": [
+        "V06"
+      ],
+      "SUD-mati-5": [
+        "V07"
+      ],
+      "NOR-mati-5": [
+        "V09"
+      ],
+      "CEN-nit-6": [
+        "V02",
+        "V04"
+      ],
+      "NOR-nit-6": [
+        "V03",
+        "V09"
+      ],
+      "CEN-mati-6": [
+        "V05"
+      ],
+      "CEN-tarda-6": [
+        "V06"
+      ],
+      "SUD-mati-6": [
+        "V07"
+      ],
+      "CEN-nit-7": [
+        "V01",
+        "V02"
+      ],
+      "NOR-nit-7": [
+        "V03",
+        "V09"
+      ],
+      "CEN-tarda-7": [
+        "V06"
+      ],
+      "SUD-mati-7": [
+        "V07"
+      ],
+      "SUD-tarda-7": [
+        "V08"
+      ],
+      "CEN-mati-7": [
+        "V10"
+      ],
+      "CEN-nit-8": [
+        "V01",
+        "V02"
+      ],
+      "NOR-nit-8": [
+        "V03",
+        "V10"
+      ],
+      "NOR-mati-8": [
+        "V04"
+      ],
+      "CEN-mati-8": [
+        "V05"
+      ],
+      "CEN-tarda-8": [
+        "V06"
+      ],
+      "SUD-mati-8": [
+        "V07"
+      ],
+      "SUD-tarda-8": [
+        "V08"
+      ],
+      "CEN-nit-9": [
+        "V01",
+        "V02"
+      ],
+      "NOR-mati-9": [
+        "V04"
+      ],
+      "CEN-mati-9": [
+        "V05"
+      ],
+      "CEN-tarda-9": [
+        "V06"
+      ],
+      "SUD-mati-9": [
+        "V07"
+      ],
+      "NOR-nit-9": [
+        "V08",
+        "V09"
+      ]
+    }
+  },
+  "cobertura_incompleta": [],
+  "avisos": []
+}

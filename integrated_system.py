@@ -28,7 +28,8 @@ from database import (
     obtenir_assignacions_publicades, obtenir_assignacions_temptatives,
     guardar_assignacions, publicar_assignacions, registrar_substitucio,
     guardar_estat_rolling_horizon, obtenir_estat_rolling_horizon, importar_dades_exemple,
-    obtenir_hores_acumulades, DB_PATH
+    obtenir_hores_acumulades, DB_PATH, obtenir_servei,
+    obtenir_assignacions_actuals,
 )
 
 
@@ -156,7 +157,13 @@ class SistemaIntegrat:
             )
             
             # Validar resultat
-            errors = valida_resultat(resultat, vigilants_actualitzats, serveis_finestra, params)
+            errors = valida_resultat(
+                resultat,
+                vigilants_actualitzats,
+                serveis_finestra,
+                params,
+                permetre_cobertura_parcial=True,
+            )
             
             # Publiquem només el primer dia de la finestra (dia_publicar)
             serveis_avui = [s for s in serveis_finestra if self._dia_index(s) == dia_publicar]

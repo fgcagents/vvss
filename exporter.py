@@ -102,10 +102,16 @@ def exporta_a_json(
         assignacions_per_servei[s_id].append(v_id)
     
     # Estadístiques
+    serveis_coberts = sum(
+        1 for s in serveis
+        if len(assignacions_per_servei.get(s.id, [])) >= (
+            2 if s.binomi_obligatori else s.vigilants_requerits
+        )
+    )
     estadistiques = {
         "total_serveis": len(serveis),
-        "serveis_coberts": len(serveis) - len(resultat.cobertura_incompleta),
-        "serveis_sense_cobertura": len(resultat.cobertura_incompleta),
+        "serveis_coberts": serveis_coberts,
+        "serveis_sense_cobertura": len(serveis) - serveis_coberts,
         "total_assignacions": len(resultat.assignacions),
         "vigilants_actius": sum(1 for v in vigilants if v.actiu),
         "temps_resolucio_segons": resultat.temps_resolucio_segons,
@@ -171,11 +177,13 @@ def genera_estadistiques(
     
     # Distribució de torns
     torns_per_vigilant = defaultdict(lambda: defaultdict(int))
+    distribucio_global = defaultdict(int)
     serveis_dict = {s.id: s for s in serveis}
     for v_id, s_id in resultat.assignacions:
         s = serveis_dict.get(s_id)
         if s and s.torn:
             torns_per_vigilant[v_id][s.torn] += 1
+            distribucio_global[s.torn] += 1
     
     # Distribució per zona
     zones_per_vigilant = defaultdict(lambda: defaultdict(int))
@@ -192,15 +200,34 @@ def genera_estadistiques(
     # Serveis coberts per zona
     serveis_coberts_per_zona = defaultdict(int)
     for s in serveis:
-        if s.id in assignacions_per_servei:
+        requerits = 2 if s.binomi_obligatori else s.vigilants_requerits
+        if len(assignacions_per_servei.get(s.id, [])) >= requerits:
             serveis_coberts_per_zona[s.zona] += 1
     
     return {
         "general": {
             "total_serveis": len(serveis),
-            "serveis_coberts": len(serveis) - len(resultat.cobertura_incompleta),
-            "serveis_sense_cobertura": len(resultat.cobertura_incompleta),
-            "percentatge_cobertura": (1 - len(resultat.cobertura_incompleta) / len(serveis)) * 100 if serveis else 100,
+            "serveis_coberts": sum(
+                1 for s in serveis
+                if len(assignacions_per_servei.get(s.id, [])) >= (
+                    2 if s.binomi_obligatori else s.vigilants_requerits
+                )
+            ),
+            "serveis_sense_cobertura": sum(
+                1 for s in serveis
+                if len(assignacions_per_servei.get(s.id, [])) < (
+                    2 if s.binomi_obligatori else s.vigilants_requerits
+                )
+            ),
+            "percentatge_cobertura": (
+                sum(
+                    1 for s in serveis
+                    if len(assignacions_per_servei.get(s.id, [])) >= (
+                        2 if s.binomi_obligatori else s.vigilants_requerits
+                    )
+                ) / len(serveis) * 100
+                if serveis else 100
+            ),
             "total_assignacions": len(resultat.assignacions),
             "vigilants_actius": sum(1 for v in vigilants if v.actiu),
             "vigilants_assignats": len(assignacions_per_vigilant),
@@ -213,7 +240,7 @@ def genera_estadistiques(
         },
         "torns": {
             "per_vigilant": dict(torns_per_vigilant),
-            "distribucio_global": defaultdict(int),
+            "distribucio_global": dict(distribucio_global),
         },
         "zones": {
             "serveis_per_zona": dict(serveis_per_zona),

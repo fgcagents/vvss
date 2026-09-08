@@ -179,8 +179,23 @@ def init_db() -> None:
 
 def reset_db() -> None:
     """Esborra totes les taules i reinicialitza la base de dades."""
-    if DB_PATH.exists():
-        DB_PATH.unlink()
+    # No s'elimina el fitxer: a Windows pot estar obert per una altra
+    # connexió del procés i unlink() falla encara que la BD sigui vàlida.
+    init_db()
+    with _connect() as conn:
+        for table in (
+            "assignacions",
+            "historic_assignacions",
+            "historic_substitucions",
+            "baixes",
+            "serveis",
+            "vigilants",
+            "rolling_horizon_estat",
+            "estadistiques",
+            "parametres_legals",
+        ):
+            conn.execute(f"DELETE FROM {table}")
+        conn.commit()
     init_db()
 
 
@@ -527,9 +542,10 @@ def guardar_assignacions(
         # Inserir noves assignacions
         for v_id, s_id in assignacions:
             cursor.execute("""
-                INSERT OR REPLACE INTO assignacions 
-                (vigilant_id, servei_id, publicat)
+                INSERT INTO assignacions (vigilant_id, servei_id, publicat)
                 VALUES (?, ?, ?)
+                ON CONFLICT(vigilant_id, servei_id) DO UPDATE SET
+                    publicat = MAX(assignacions.publicat, excluded.publicat)
             """, (v_id, s_id, int(publicat)))
         
         conn.commit()
@@ -548,27 +564,47 @@ def publicar_assignacions(servei_ids: List[str]) -> None:
                 UPDATE assignacions SET publicat = 1 
                 WHERE servei_id = ?
             """, (s_id,))
+            cursor.execute("""
+                INSERT INTO historic_assignacions (vigilant_id, servei_id, motiu)
+                SELECT a.vigilant_id, a.servei_id, 'publicació'
+                FROM assignacions a
+                WHERE a.servei_id = ? AND a.publicat = 1
+                  AND NOT EXISTS (
+                      SELECT 1 FROM historic_assignacions h
+                      WHERE h.vigilant_id = a.vigilant_id
+                        AND h.servei_id = a.servei_id
+                        AND h.data_desassignacio IS NULL
+                  )
+            """, (s_id,))
+            if cursor.rowcount:
+                cursor.execute("""
+                    UPDATE vigilants
+                    SET hores_acumulades = hores_acumulades + COALESCE((
+                        SELECT SUM((julianday(s.fi) - julianday(s.inici)) * 24.0)
+                        FROM assignacions a
+                        JOIN serveis s ON s.id = a.servei_id
+                        WHERE a.vigilant_id = vigilants.id
+                          AND a.servei_id = ?
+                          AND a.publicat = 1
+                    ), 0)
+                    WHERE id IN (
+                        SELECT vigilant_id FROM assignacions
+                        WHERE servei_id = ? AND publicat = 1
+                    )
+                """, (s_id, s_id))
         conn.commit()
 
 
 def obtenir_hores_acumulades(vigilant_id: str) -> float:
-    """Obté les hores acumulades d'un vigilant des de l'històric."""
+    """Obté les hores acumulades persistides del vigilant."""
     with _connect() as conn:
         cursor = conn.cursor()
-        cursor.execute("""
-            SELECT s.inici, s.fi
-            FROM historic_assignacions ha
-            JOIN serveis s ON ha.servei_id = s.id
-            WHERE ha.vigilant_id = ? AND ha.data_desassignacio IS NULL
-        """, (vigilant_id,))
-        
-        hores = 0.0
-        for row in cursor.fetchall():
-            inici = datetime.fromisoformat(row["inici"])
-            fi = datetime.fromisoformat(row["fi"])
-            hores += (fi - inici).total_seconds() / 3600.0
-        
-        return hores
+        cursor.execute(
+            "SELECT hores_acumulades FROM vigilants WHERE id = ?",
+            (vigilant_id,),
+        )
+        row = cursor.fetchone()
+        return float(row["hores_acumulades"]) if row else 0.0
 
 
 # ============================================================================
