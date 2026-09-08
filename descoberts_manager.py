@@ -23,7 +23,7 @@ from database import (
     registrar_descobert, obtenir_descoberts, obtenir_descoberts_pendents,
     obtenir_descoberts_per_dia, obtenir_motiu_descobert, obtenir_tots_motius_descobert,
     marcar_descobert_com_resolt, obtenir_estadistiques_descoberts,
-    obtenir_informe_descoberts_diari, obtenir_dashboard_descoberts
+    obtenir_dashboard_descoberts
 )
 from builder import ModelBuilder
 
